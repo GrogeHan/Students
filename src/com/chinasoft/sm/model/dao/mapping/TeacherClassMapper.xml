@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.sm.model.dao.TeacherClassMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasoft.sm.model.entity.TeacherClass" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="tid" property="tid" jdbcType="CHAR" />
+    <result column="cid" property="cid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tid, cid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from TeacherClass
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from TeacherClass
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasoft.sm.model.entity.TeacherClass" >
+    insert into TeacherClass (id, tid, cid)
+    values (#{id,jdbcType=CHAR}, #{tid,jdbcType=CHAR}, #{cid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasoft.sm.model.entity.TeacherClass" >
+    insert into TeacherClass
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tid != null" >
+        tid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="tid != null" >
+        #{tid,jdbcType=CHAR},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasoft.sm.model.entity.TeacherClass" >
+    update TeacherClass
+    <set >
+      <if test="tid != null" >
+        tid = #{tid,jdbcType=CHAR},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasoft.sm.model.entity.TeacherClass" >
+    update TeacherClass
+    set tid = #{tid,jdbcType=CHAR},
+      cid = #{cid,jdbcType=CHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

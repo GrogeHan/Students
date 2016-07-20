@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.sm.model.dao.ClassesMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasoft.sm.model.entity.Classes" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="clano" property="clano" jdbcType="VARCHAR" />
+    <result column="claname" property="claname" jdbcType="VARCHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, clano, claname, createtime, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Classes
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Classes
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasoft.sm.model.entity.Classes" >
+    insert into Classes (id, clano, claname, 
+      createtime, state)
+    values (#{id,jdbcType=CHAR}, #{clano,jdbcType=VARCHAR}, #{claname,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasoft.sm.model.entity.Classes" >
+    insert into Classes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clano != null" >
+        clano,
+      </if>
+      <if test="claname != null" >
+        claname,
+      </if>
+      <if test="createtime != null" >
+        createtime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="clano != null" >
+        #{clano,jdbcType=VARCHAR},
+      </if>
+      <if test="claname != null" >
+        #{claname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasoft.sm.model.entity.Classes" >
+    update Classes
+    <set >
+      <if test="clano != null" >
+        clano = #{clano,jdbcType=VARCHAR},
+      </if>
+      <if test="claname != null" >
+        claname = #{claname,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasoft.sm.model.entity.Classes" >
+    update Classes
+    set clano = #{clano,jdbcType=VARCHAR},
+      claname = #{claname,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

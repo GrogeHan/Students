@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.sm.model.dao.StudentsMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasoft.sm.model.entity.Students" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="stuname" property="stuname" jdbcType="VARCHAR" />
+    <result column="stuno" property="stuno" jdbcType="VARCHAR" />
+    <result column="stubrithday" property="stubrithday" jdbcType="TIMESTAMP" />
+    <result column="stusex" property="stusex" jdbcType="BIT" />
+    <result column="stuclass" property="stuclass" jdbcType="CHAR" />
+    <result column="inTime" property="intime" jdbcType="TIMESTAMP" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stuname, stuno, stubrithday, stusex, stuclass, inTime, state
+  </sql>
+  
+  <select id="getAllUsers" resultMap="BaseResultMap">
+		select * from Students
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Students
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Students
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasoft.sm.model.entity.Students" >
+    insert into Students (id, stuname, stuno, 
+      stubrithday, stusex, stuclass, 
+      inTime, state)
+    values (#{id,jdbcType=CHAR}, #{stuname,jdbcType=VARCHAR}, #{stuno,jdbcType=VARCHAR}, 
+      #{stubrithday,jdbcType=TIMESTAMP}, #{stusex,jdbcType=BIT}, #{stuclass,jdbcType=CHAR}, 
+      #{intime,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasoft.sm.model.entity.Students" >
+    insert into Students
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stuname != null" >
+        stuname,
+      </if>
+      <if test="stuno != null" >
+        stuno,
+      </if>
+      <if test="stubrithday != null" >
+        stubrithday,
+      </if>
+      <if test="stusex != null" >
+        stusex,
+      </if>
+      <if test="stuclass != null" >
+        stuclass,
+      </if>
+      <if test="intime != null" >
+        inTime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="stuname != null" >
+        #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuno != null" >
+        #{stuno,jdbcType=VARCHAR},
+      </if>
+      <if test="stubrithday != null" >
+        #{stubrithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stusex != null" >
+        #{stusex,jdbcType=BIT},
+      </if>
+      <if test="stuclass != null" >
+        #{stuclass,jdbcType=CHAR},
+      </if>
+      <if test="intime != null" >
+        #{intime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasoft.sm.model.entity.Students" >
+    update Students
+    <set >
+      <if test="stuname != null" >
+        stuname = #{stuname,jdbcType=VARCHAR},
+      </if>
+      <if test="stuno != null" >
+        stuno = #{stuno,jdbcType=VARCHAR},
+      </if>
+      <if test="stubrithday != null" >
+        stubrithday = #{stubrithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stusex != null" >
+        stusex = #{stusex,jdbcType=BIT},
+      </if>
+      <if test="stuclass != null" >
+        stuclass = #{stuclass,jdbcType=CHAR},
+      </if>
+      <if test="intime != null" >
+        inTime = #{intime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasoft.sm.model.entity.Students" >
+    update Students
+    set stuname = #{stuname,jdbcType=VARCHAR},
+      stuno = #{stuno,jdbcType=VARCHAR},
+      stubrithday = #{stubrithday,jdbcType=TIMESTAMP},
+      stusex = #{stusex,jdbcType=BIT},
+      stuclass = #{stuclass,jdbcType=CHAR},
+      inTime = #{intime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

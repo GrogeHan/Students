@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasoft.sm.model.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasoft.sm.model.entity.Teacher" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="teano" property="teano" jdbcType="VARCHAR" />
+    <result column="teaname" property="teaname" jdbcType="VARCHAR" />
+    <result column="teabrithday" property="teabrithday" jdbcType="TIMESTAMP" />
+    <result column=" introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="intime" property="intime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, teano, teaname, teabrithday, " introduction", intime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from Teacher
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from Teacher
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.chinasoft.sm.model.entity.Teacher" >
+    insert into Teacher (id, teano, teaname, 
+      teabrithday, " introduction", intime
+      )
+    values (#{id,jdbcType=CHAR}, #{teano,jdbcType=VARCHAR}, #{teaname,jdbcType=VARCHAR}, 
+      #{teabrithday,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{intime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasoft.sm.model.entity.Teacher" >
+    insert into Teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="teano != null" >
+        teano,
+      </if>
+      <if test="teaname != null" >
+        teaname,
+      </if>
+      <if test="teabrithday != null" >
+        teabrithday,
+      </if>
+      <if test="introduction != null" >
+        " introduction",
+      </if>
+      <if test="intime != null" >
+        intime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="teano != null" >
+        #{teano,jdbcType=VARCHAR},
+      </if>
+      <if test="teaname != null" >
+        #{teaname,jdbcType=VARCHAR},
+      </if>
+      <if test="teabrithday != null" >
+        #{teabrithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null" >
+        #{intime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasoft.sm.model.entity.Teacher" >
+    update Teacher
+    <set >
+      <if test="teano != null" >
+        teano = #{teano,jdbcType=VARCHAR},
+      </if>
+      <if test="teaname != null" >
+        teaname = #{teaname,jdbcType=VARCHAR},
+      </if>
+      <if test="teabrithday != null" >
+        teabrithday = #{teabrithday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        " introduction" = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="intime != null" >
+        intime = #{intime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasoft.sm.model.entity.Teacher" >
+    update Teacher
+    set teano = #{teano,jdbcType=VARCHAR},
+      teaname = #{teaname,jdbcType=VARCHAR},
+      teabrithday = #{teabrithday,jdbcType=TIMESTAMP},
+      " introduction" = #{introduction,jdbcType=VARCHAR},
+      intime = #{intime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>
