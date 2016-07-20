@@ -20,6 +20,8 @@ public class IndexController {
 	@Resource 
 	private UserService userservice;
 	
+	@Resource 
+	private Students stu;
 	
 	
 	@RequestMapping(value="index",method=RequestMethod.GET)
@@ -30,6 +32,22 @@ public class IndexController {
 		List<Students> list = userservice.getAllUsers();
 		mView.addObject("stulist", list);
 		mView.setViewName("index");
+		return mView;
+	}
+	
+	@RequestMapping(value="studentview",method=RequestMethod.GET)
+	public ModelAndView StudentView(String code)
+	{
+		ModelAndView mView = new ModelAndView();
+		if(code.equals(""))
+		{
+			mView.addObject("typename", "添加學生信息");
+		}else {
+			mView.addObject("typename", "修改學生信息");
+			stu = userservice.getUser(code);
+			mView.addObject("single", stu);
+		}
+		mView.setViewName("studentmanage");
 		return mView;
 	}
 
